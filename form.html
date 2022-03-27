@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Form</title>
+</head>
+<body>
+   
+    <div class="main">
+        <form action="">
+            <h1>Registrantion Form</h1>
+            <div class="form-group">
+                <label for="id" class="from-label" >User ID: </label>
+                <input id = "userId" name="id" type="text" required>
+                <span id = "statusOfID"></span>
+            </div>
+            <div class="form-group">
+                <label for="password" class="from-label" >Password: </label>
+                <input id = "password" name="password" type="text" required>
+                <span id="statusOfPassword"></span>
+            </div>
+            <div class="form-group">
+                <label for="name" class="from-label" >Name: </label>
+                <input id = "name" name="name" type="text" required >
+                <span id="statusOfName"></span>
+            </div>
+            <div class="form-group">
+                <label for="address" class="from-label" >Address: </label>
+                <input id = "address" name="address" type="text" >
+            </div>
+            <div class="form-group">
+                <label for="country" class="from-label" >Country: </label>
+                <select name="country" id="country" >
+                    <option value="Chọn đất nước">Chọn đất nước</option>
+                    <option value="VietNam">Việt Nam</option>
+                    <option value="English">Anh</option>
+                    <option value="Germany">Đức</option>
+                    <option value="Korean">Hàn Quốc</option>
+                </select>
+                <span id="statusOfCountry"></span>
+            </div>
+            <div class="form-group">
+                <label for="ZipCode" class="from-label" >Zip Code: </label>
+                <input id = "ZipCode" name="ZipCode" type="text" required>
+                <span id="StatusOfZip"></span>
+            </div>
+            <div class="form-group">
+                <label for="email" class="from-label" >Email: </label>
+                <input id = "email" name="email" type="text" required>
+                <span id="StatusOfEmail"></span>
+            </div>
+            <div class="form-group">
+                <label for="gender" class="from-label" >Gender: </label>
+                <input name="gender" type="radio" value="Male" required>
+                <label for="gender">Male</label>
+                <input name="gender" type="radio" value="Female" required>
+                <label for="gender">Female</label>
+                <span id="statusOfGender"></span>
+            </div>
+            <div class="form-group">
+                <label for="language" class="from-label" >Language: </label>
+                <input name="language" type="radio" value="english" required>
+                <label for="language">English</label>
+                <input name="language" type="radio" value="Nonenglish" required>
+                <label for="language">NonEnglish</label>
+                <span id="StatusOfLanguage"></span>
+            </div>
+            <div class="form-group">
+                <label for="about" class="from-label" >About: </label>
+                <input id = "about" name="about" type="text" >
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+<script>
+    let userId = document.getElementById('userId')
+let statusOfID = document.getElementById('statusOfID')
+userId.addEventListener('focus',function(){
+    this.style.border = '1px solid red'
+})
+userId.addEventListener('focusout',leaveID)
+function leaveID(){
+    var IDRegex = /^[a-zA-Z0-9]{5,12}$/;
+    if(IDRegex.test(userId.value)){
+        statusOfID.textContent = 'ID hợp lệ'
+        statusOfID.style.color = 'blue'
+    }
+    else{
+        statusOfID.textContent = 'ID không hợp lệ. Độ dài 5-12'
+        statusOfID.style.color = 'red'
+    }
+}
+
+let password = document.getElementById('password')
+let statusOfPassword = document.getElementById('statusOfPassword')
+password.addEventListener('focus',function(){
+    this.style.border = '1px solid red'
+})
+password.addEventListener('focusout',leavepassword)
+function leavepassword(){
+    var passwordRegex = /^[a-zA-Z0-9]{7,12}$/;
+    if(passwordRegex.test(password.value)){
+        statusOfPassword.textContent = 'password hợp lệ'
+        statusOfPassword.style.color = 'blue'
+    }
+    else{
+        statusOfPassword.textContent = 'password không hợp lệ. Độ dài 7-12'
+        statusOfPassword.style.color = 'red'
+    }
+}
+
+let Name = document.getElementById('name')
+let statusOfName = document.getElementById('statusOfName')
+Name.addEventListener('focus',function(){
+    this.style.border = '1px solid red'
+})
+Name.addEventListener('focusout',leavename)
+function leavename(){
+    var NameRegex = /^[a-zA-Z]*$/;
+    if(NameRegex.test(Name.value)){
+        statusOfName.textContent = 'Tên hợp lệ'
+        statusOfName.style.color = 'blue'
+    }
+    else{
+        statusOfName.textContent = 'Tên không hợp lệ'
+        statusOfName.style.color = 'red'
+    }
+}
+
+let ZipCode = document.getElementById('ZipCode')
+let StatusOfZip = document.getElementById('StatusOfZip')
+ZipCode.addEventListener('focus',function(){
+    this.style.border = '1px solid red'
+})
+ZipCode.addEventListener('focusout',leavezipcode)
+function leavezipcode(){
+    var ZipCodeRegex = /^[0-9]*$/;
+    if(ZipCodeRegex.test(ZipCode.value)){
+        StatusOfZip.textContent = 'ZipCode hợp lệ'
+        StatusOfZip.style.color = 'blue'
+    }
+    else{
+        StatusOfZip.textContent = 'ZipCode không hợp lệ'
+        StatusOfZip.style.color = 'red'
+    }
+}
+
+let email = document.getElementById('email')
+let StatusOfEmail = document.getElementById('StatusOfEmail')
+email.addEventListener('focus',function(){
+    this.style.border = '1px solid red'
+})
+email.addEventListener('focusout',leaveEmail)
+function leaveEmail(){
+    var emailRegex = /^[A-Z0-9._%+-]+@([A-Z0-9-]+\.)+[A-Z]{2,4}$/i;
+    if(emailRegex.test(email.value)){
+        StatusOfEmail.textContent = 'Email hợp lệ'
+        StatusOfEmail.style.color = 'blue'
+    }
+    else{
+        StatusOfEmail.textContent = 'Email không hợp lệ'
+        StatusOfEmail.style.color = 'red'
+    }
+}
+
+let country = getElementById('country').value
+let statusOfCountry = getElementById('statusOfCountry')
+country.addEventListener('focus', function(){
+    this.style.border = '1px solid red'
+})
+country.addEventListener('focusout',leaveCountry)
+function leaveCountry() {
+    if(country != 'Chọn đất nước') {
+        statusOfCountry.textContent = 'Chọn đất nước thành công'
+        statusOfCountry.style.color = 'blue' 
+    }else {
+        statusOfCountry.textContent = 'Vui lòng chọn đất nước'
+        statusOfCountry.style.color = 'red' 
+    }
+}
+</script>
+</body>
+</html>
